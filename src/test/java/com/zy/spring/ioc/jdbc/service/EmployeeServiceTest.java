@@ -19,4 +19,8 @@ public class EmployeeServiceTest {
     }
 
 
+    @Test
+    public void testBatchImport() {
+        employeeService.startImport();
+    }
 }

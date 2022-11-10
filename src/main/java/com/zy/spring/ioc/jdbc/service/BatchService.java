@@ -3,20 +3,14 @@ package com.zy.spring.ioc.jdbc.service;
 import com.zy.spring.ioc.jdbc.dao.EmployeeDao;
 import com.zy.spring.ioc.jdbc.entity.Employee;
 
-
 import java.util.Date;
 
-public class EmployeeService {
+public class BatchService {
     private EmployeeDao employeeDao;
-    private BatchService batchService;
-
-    public void batchImport(){
+    public void importJob1(){
         for (int i = 0; i < 10; i++) {
-//            if (i==3){
-//                throw new RuntimeException("意料之外的错误");
-//            }
             Employee employee = new Employee();
-            employee.setEno(8000+i);
+            employee.setEno(5000+i);
             employee.setEname("员工"+i);
             employee.setDname("研发部");
             employee.setSalary(6666f);
@@ -24,10 +18,16 @@ public class EmployeeService {
             employeeDao.insert(employee);
         }
     }
-
-    public void startImport(){
-        batchService.importJob1();
-        batchService.importJob2();
+    public void importJob2(){
+        for (int i = 0; i < 10; i++) {
+            Employee employee = new Employee();
+            employee.setEno(4000+i);
+            employee.setEname("市场部员工"+i);
+            employee.setDname("市场部");
+            employee.setSalary(6666f);
+            employee.setHiredate(new Date());
+            employeeDao.insert(employee);
+        }
     }
 
     public EmployeeDao getEmployeeDao() {
@@ -36,13 +36,5 @@ public class EmployeeService {
 
     public void setEmployeeDao(EmployeeDao employeeDao) {
         this.employeeDao = employeeDao;
-    }
-
-    public BatchService getBatchService() {
-        return batchService;
-    }
-
-    public void setBatchService(BatchService batchService) {
-        this.batchService = batchService;
     }
 }

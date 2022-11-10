@@ -32,11 +32,12 @@
 
     <bean id="employeeService" class="com.zy.spring.ioc.jdbc.service.EmployeeService">
         <property name="employeeDao" ref="employeeDao"/>
-
+        <property name="batchService" ref="batchService"/>
     </bean>
 
-
-
+   <bean id="batchService" class="com.zy.spring.ioc.jdbc.service.BatchService">
+       <property name="employeeDao" ref="employeeDao"/>
+   </bean>
     <!-- 1.事务管理器,用于创建事务/提交/回滚 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -47,6 +48,7 @@
         <tx:attributes>
             <!-- 目标方法名为batchImport时,启用声明式事务,成功提交,运行时异常回滚 -->
             <tx:method name="batchImport" propagation="REQUIRED"/>
+            <!--通配符设置事务方法-->
             <tx:method name="batch*" propagation="REQUIRED"/>
             <!-- 设置所有findXXX方法不需要使用事务 -->
             <tx:method name="find*" propagation="NOT_SUPPORTED" read-only="true"/>
