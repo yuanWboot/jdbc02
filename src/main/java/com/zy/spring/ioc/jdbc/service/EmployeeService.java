@@ -11,9 +11,9 @@ public class EmployeeService {
 
     public void batchImport(){
         for (int i = 0; i < 10; i++) {
-            if (i==3){
-                throw new RuntimeException("意料之外的错误");
-            }
+//            if (i==3){
+//                throw new RuntimeException("意料之外的错误");
+//            }
             Employee employee = new Employee();
             employee.setEno(8000+i);
             employee.setEname("员工"+i);
