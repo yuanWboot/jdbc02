@@ -27,6 +27,9 @@ public class EmployeeService {
 
     public void startImport(){
         batchService.importJob1();
+        if (1==1){
+            throw new RuntimeException("意料之外的错误");
+        }
         batchService.importJob2();
     }
 
